@@ -1,0 +1,12 @@
+<div class="text-center text-white text-uppercase wrapper-box"></div>
+<div *ngIf="questions && !errorMessage">
+    <app-dynamic-form [questions]="questions"></app-dynamic-form>
+</div>
+
+<div *ngIf="errorMessage" class="end-box text-center font-weight-bold small-wrapper rounded">
+  <div>
+      <img src="../../assets/UPC_GreenBG_sRGB.svg" style="max-width: 75px;" class="logo-box"/>
+  </div>
+
+  {{errorMessage}}
+</div>

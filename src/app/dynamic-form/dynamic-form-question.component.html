@@ -1,0 +1,82 @@
+<div *ngIf="form && question">
+  <div [formGroup]="form">
+    <div [ngSwitch]="question.controlType" class="form-group">
+      <h3 *ngIf="question.header">{{question.header}}</h3>
+      <input *ngSwitchCase="'textbox'" [formControlName]="question.key" [id]="question.key" [type]="question.type">
+
+      <div *ngSwitchCase="'radio'">
+          <ng-template [ngIf]="question.showIf && question.isVisible(form)">
+              <div [attr.for]="question.key" class="label-box"><strong>{{question.label}}</strong></div>
+              <div *ngIf="question.values">
+
+              <div *ngIf="question.content" [innerHTML]="question.content" class="form-row title-box">
+              </div>
+              <div [class]="question.longValuesLabels ? '' : 'item-radio-box'">
+                  <div [class]="question.longValuesLabels ? 'd-flex mb-2' : 'd-inline-flex mr-2 justify-content-center'" *ngFor="let row of question.values">
+                      <div *ngIf="question.activePageOnClick" [class]="question.longValuesLabels ? 'custom-control custom-radio' : 'radio-box'">
+                        <input [id]="question.key+row.value"  type="radio" [formControlName]="question.key" [value]="row.value" [class]="question.longValuesLabels ? 'custom-control-input' : ''"
+                          (click)="showPage(question.activePageOnClick)">
+                          <label  [for]="question.key+row.value" [class]="question.longValuesLabels ? 'custom-control-label' : ''">{{row.label}}</label>
+                      </div>
+                      <div *ngIf="!question.activePageOnClick" [class]="question.longValuesLabels ? 'custom-control custom-radio' : 'radio-box'">
+                        <input [id]="question.key+row.value"  type="radio" [formControlName]="question.key" [value]="row.value" [class]="question.longValuesLabels ? 'custom-control-input' : ''">
+                        <label  [for]="question.key+row.value" [class]="question.longValuesLabels ? 'custom-control-label' : ''">{{row.label}}</label>
+                      </div>
+                    </div>
+              </div>
+
+              </div>
+              <div *ngIf="!question.values">
+                <input [id]="question.key" type="radio" [formControlName]="question.key"
+                  [value]="question.value">{{row.label}}
+              </div>
+            </ng-template>
+            <ng-template [ngIf]="!question.showIf">
+            <div [attr.for]="question.key" class="label-box"><strong>{{question.label}}</strong></div>
+            <div *ngIf="question.values">
+
+            <div *ngIf="question.content" [innerHTML]="question.content" class="form-row title-box">
+            </div>
+            <div [class]="question.longValuesLabels ? '' : 'item-radio-box'">
+                <div  [class]="question.longValuesLabels ? 'd-flex mb-2' : 'd-inline-flex mr-2 justify-content-center'" *ngFor="let row of question.values">
+                    <div *ngIf="question.activePageOnClick" [class]="question.longValuesLabels ? 'custom-control custom-radio' : 'radio-box'">
+                      <input [id]="question.key+row.value"  type="radio" [formControlName]="question.key" [value]="row.value" [class]="question.longValuesLabels ? 'custom-control-input' : ''"
+                        (click)="showPage(question.activePageOnClick)">
+                        <label  [for]="question.key+row.value" [class]="question.longValuesLabels ? 'custom-control-label' : ''">{{row.label}}</label>
+                    </div>
+                    <div *ngIf="!question.activePageOnClick" [class]="question.longValuesLabels ? 'custom-control custom-radio' : 'radio-box'">
+                      <input [id]="question.key+row.value"  type="radio" [formControlName]="question.key" [value]="row.value" [class]="question.longValuesLabels ? 'custom-control-input' : ''">
+                      <label  [for]="question.key+row.value" [class]="question.longValuesLabels ? 'custom-control-label' : ''">{{row.label}}</label>
+                    </div>
+                  </div>
+            </div>
+
+            </div>
+            <div *ngIf="!question.values">
+              <input [id]="question.key" type="radio" [formControlName]="question.key"
+                [value]="question.value">{{row.label}}
+            </div>
+          </ng-template>
+      </div>
+      <div *ngSwitchCase="'textarea'">
+        <ng-template [ngIf]="question.showIf && question.isVisible(form)">
+          <div>
+            <label [attr.for]="question.key"><strong>{{question.label}}</strong></label>
+            <textarea [rows]="question.rows" class="rounded form-control" [id]="question.key" [formControlName]="question.key"></textarea>
+          </div>
+        </ng-template>
+        <ng-template [ngIf]="!question.showIf">
+          <label [attr.for]="question.key"><strong>{{question.label}}</strong></label>
+          <textarea [rows]="question.rows" class="rounded form-control" [id]="question.key" [formControlName]="question.key"></textarea>
+        </ng-template>
+      </div>
+      <select [id]="question.key" *ngSwitchCase="'dropdown'" [formControlName]="question.key">
+        <option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</option>
+      </select>
+    </div>
+    <div [class]="'errorMessage'" *ngIf="form.get(question.key).hasError('required') && (form.get(question.key).touched || form.get(question.key).dirty)">Pole
+      jest wymagane</div>
+    <div [class]="'errorMessage'" *ngIf="form.get(question.key).hasError('maxlength') && (form.get(question.key).touched || form.get(question.key).dirty)">
+      Zbyt długi tekst</div>
+  </div>
+</div>

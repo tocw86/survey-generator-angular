@@ -1,0 +1,227 @@
+/* You can add global styles to this file, and also import other style files */
+$success: #357976;
+@import url("https://www.upc.pl/etc/designs/lgi-pe-etlem/css/main.min.css");
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+body {
+  font-family: "HCo Gotham Rounded SSm", sans-serif;
+  background: #f2f2f2;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: "speak_ultra_black", Geneva, Verdana, sans-serif;
+}
+.wrapper {
+  max-width: 1310px;
+  margin: 0 auto;
+}
+
+.bg-header {
+  min-height: 100%;
+  background: #f2f2f2;
+  padding-bottom: 120px;
+  &::before {
+    content: "";
+    background: #f2f2f2;
+    background-image: url("../src/assets/bg_banner.png");
+    background-position-x: center;
+    background-position-y: top;
+    background-size: cover;
+    width: 100%;
+    height: 624px;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    right: 0;
+  }
+  .wrapper-box,
+  div {
+    z-index: 2;
+    position: relative;
+  }
+  .wrapper-box {
+    text-shadow: 0px 2px 1px #656565;
+    padding-top: 92px;
+    font-size: 50px;
+  }
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+  color: #fff;
+  border-color: $success;
+  background-color: $success;
+}
+.rounded {
+  border-radius: 16px !important;
+}
+
+.small-wrapper {
+  max-width: 730px;
+  background: white;
+  margin: 0 auto;
+  margin-top: 175px;
+  -webkit-box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.75);
+  padding: 50px;
+  color: #585857;
+}
+
+.btn.btn-success,
+.btn.btn-danger {
+  background-image: none;
+  height: auto;
+  width: 100%;
+  max-width: 180px;
+  margin: 0 auto;
+  -webkit-box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.75);
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.errorMessage {
+  color: $danger;
+  margin-top: -10px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.radio-box {
+  input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+  }
+  label {
+    padding: 6px;
+    border: 1px solid #dae0ea;
+    border-radius: 50%;
+    padding: 7px;
+    font-weight: 600;
+    font-size: 14px;
+    width: 50px;
+    height: 50px;
+    line-height: 33px;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 0;
+  }
+  input:checked + label {
+    background: $success;
+    color: white;
+    border: none;
+  }
+}
+.item-radio-box {
+  > div:last-of-type {
+    margin-right: 0 !important;
+  }
+}
+.label-box {
+  margin-bottom: 20px;
+}
+.title-box {
+  font-size: 14px;
+  margin-bottom: 10px;
+  padding: 0 6px;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  resize: none;
+}
+
+.end-box {
+  font-size: 30px;
+  padding: 140px 50px;
+  padding-top: 35px;
+  .logo-box{
+    margin-bottom: 80px;
+  }
+}
+@include media-breakpoint-down(md) {
+  .small-wrapper {
+    margin-top: 50px;
+  }
+  .bg-header h1 {
+    padding-top: 56px;
+  }
+  .bg-header::before {
+    height: 394px;
+  }
+  .end-box {
+    padding: 100px 50px;
+  }
+  .bg-header {
+    padding-bottom: 20px;
+  }
+}
+@include media-breakpoint-down(sm) {
+  .small-wrapper {
+    padding: 25px;
+    font-size: 16px;
+    margin-top: 70px;
+  }
+  .bg-header::before {
+    height: 260px;
+  }
+
+  .item-radio-box {
+    display: flex;
+    flex-wrap: nowrap;
+    > div:nth-child(5n + 5) {
+      margin-right: 0 !important;
+    }
+    > div {
+      margin-right: 0 !important;
+      flex-basis: 0;
+      flex-grow: 1;
+      max-width: 100%;
+      position: relative;
+      width: 100%;
+      border-right: 0;
+    }
+    > div:last-child{
+      .radio-box label{
+        border-right: 1px solid #dae0ea;
+      }
+    }
+    .radio-box {
+      margin-bottom: 0px;
+      width: 100%;
+      label {
+        font-size: 14px;
+        border-radius: 0;
+        width: 100%;
+        height: 60px;
+        font-size: 16px;
+        line-height: 46px;
+        font-weight: normal;
+        border-right: 0;
+      }
+    }
+  }
+  .step-title-box{
+    font-size: 13px;
+  }
+
+  .end-box .logo-box{
+    margin-bottom: 27px;
+  }
+}
